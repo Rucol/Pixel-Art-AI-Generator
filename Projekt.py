@@ -4,16 +4,16 @@ os.environ["KERAS_BACKEND"] = "tensorflow"
 
 import math
 import matplotlib.pyplot as plt
-import tensorflow as tf
+#import tensorflow as tf
 import tensorflow_datasets as tfds
 import tensorflow_addons as tfa
 
-import keras
-from keras import layers
-from keras import ops
-from keras.models import Model
-from keras.layers import Input, Dense, Conv2D, MaxPooling2D
-from keras.src.engine import keras_tensor
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras import ops
+from tensorflow.keras.models import Model
+from tensorflow.python.keras.engine.keras_tensor import keras_tensor
+
 
 # data
 dataset_name = "oxford_flowers102"
