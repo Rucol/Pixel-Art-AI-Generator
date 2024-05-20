@@ -9,9 +9,9 @@ import tensorflow_datasets as tfds
 import tensorflow_addons as tfa
 
 from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras import ops
-from tensorflow.keras.models import Model
+from keras import layers
+from keras import ops
+from keras import Model
 from tensorflow.python.keras.engine.keras_tensor import keras_tensor
 
 
