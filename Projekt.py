@@ -2,14 +2,13 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 import time
 
 # Załadowanie danych
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
 x_train = (x_train.astype(np.float32) - 127.5) / 127.5
 x_train = np.expand_dims(x_train, axis=-1)
-
-print("Hej")
 
 BUFFER_SIZE = 60000
 BATCH_SIZE = 128
@@ -65,8 +64,6 @@ def discriminator_loss(real_output, fake_output):
     total_loss = real_loss + fake_loss
     return total_loss
 
-print("Zaczynam się uczyć!")
-
 def train(dataset, epochs):
     start_time = time.time()  # Rozpoczęcie pomiaru czasu
 
@@ -93,7 +90,9 @@ def train(dataset, epochs):
     print(f"Training took {total_time:.2f} seconds")  # Wyświetlenie całkowitego czasu trenowania
 
     # Zapisywanie modelu generatora po zakończeniu trenowania
-    generator.save('generator_model.h5')
+    model_save_path = 'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model'
+    generator.save(model_save_path)
+    print(f"Model generatora zapisany jako {model_save_path}")
 
     # Wyświetlanie wygenerowanych obrazów po wytrenowaniu modelu
     generate_and_display_images(generator, tf.random.normal([16, 100]))
@@ -109,11 +108,13 @@ def generate_and_display_images(model, test_input):
 
     plt.show()
 
-
 EPOCHS = 50
 train(train_dataset, EPOCHS)
 
+# Sprawdzenie, czy model został zapisany w bieżącym katalogu
+print("Zapisane pliki:", os.listdir())
+
 # Ładowanie zapisanego modelu generatora i generowanie obrazów
-generator = keras.models.load_model('generator_model.h5')
+generator = keras.models.load_model('C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model')
 noise = tf.random.normal([16, 100])
 generate_and_display_images(generator, noise)
