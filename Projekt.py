@@ -66,7 +66,7 @@ def discriminator_loss(real_output, fake_output):
 
 def train(dataset, epochs):
     start_time = time.time()  # Rozpoczęcie pomiaru czasu
-
+    
     for epoch in range(epochs):
         epoch_start_time = time.time()  # Pomiar czasu dla pojedynczej epoki
         for image_batch in dataset:
@@ -81,31 +81,31 @@ def train(dataset, epochs):
             gradients_of_discriminator = disc_tape.gradient(disc_loss, discriminator.trainable_variables)
             generator_optimizer.apply_gradients(zip(gradients_of_generator, generator.trainable_variables))
             discriminator_optimizer.apply_gradients(zip(gradients_of_discriminator, discriminator.trainable_variables))
-
+        
         epoch_end_time = time.time()  # Zakończenie pomiaru czasu dla pojedynczej epoki
         print(f"Epoch {epoch+1}/{epochs} took {epoch_end_time - epoch_start_time:.2f} seconds")  # Wyświetlenie czasu dla pojedynczej epoki
     
     end_time = time.time()  # Zakończenie pomiaru czasu
     total_time = end_time - start_time  # Całkowity czas trenowania
     print(f"Training took {total_time:.2f} seconds")  # Wyświetlenie całkowitego czasu trenowania
-
+    
     # Zapisywanie modelu generatora po zakończeniu trenowania
-    model_save_path = 'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model'
+    model_save_path = "C:\\Users\\Xentri\\OneDrive\\Pulpit\\Praca inżynierska\\Model\\ModelPixelArt.keras"
     generator.save(model_save_path)
     print(f"Model generatora zapisany jako {model_save_path}")
-
+    
     # Wyświetlanie wygenerowanych obrazów po wytrenowaniu modelu
     generate_and_display_images(generator, tf.random.normal([16, 100]))
 
 def generate_and_display_images(model, test_input):
     predictions = model(test_input, training=False)
     fig = plt.figure(figsize=(4, 4))
-
+    
     for i in range(predictions.shape[0]):
         plt.subplot(4, 4, i + 1)
         plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
         plt.axis('off')
-
+    
     plt.show()
 
 EPOCHS = 50
@@ -115,6 +115,6 @@ train(train_dataset, EPOCHS)
 print("Zapisane pliki:", os.listdir())
 
 # Ładowanie zapisanego modelu generatora i generowanie obrazów
-generator = keras.models.load_model('C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model')
+generator = keras.models.load_model(r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\ModelPixelArt')
 noise = tf.random.normal([16, 100])
 generate_and_display_images(generator, noise)
