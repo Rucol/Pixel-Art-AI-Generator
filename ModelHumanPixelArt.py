@@ -17,7 +17,7 @@ image_paths = list(data_dir.glob('*/**/*.png'))
 
 def load_and_preprocess_image(path):
     image = tf.io.read_file(path)
-    image = tf.image.decode_png(image, channels=1)  # ładujemy jako obrazek grayscale
+    image = tf.image.decode_png(image, channels=3)  # ładujemy jako obrazek grayscale
     image = tf.image.resize(image, [32, 32])  # zmieniamy rozmiar na 32x32
     image = (tf.cast(image, tf.float32) - 127.5) / 127.5  # normalizujemy wartości pikseli do przedziału [-1, 1]
     return image
@@ -41,13 +41,13 @@ def make_generator_model():
     model.add(keras.layers.Conv2DTranspose(64, (5, 5), strides=(2, 2), padding='same', use_bias=False))
     model.add(keras.layers.BatchNormalization())
     model.add(keras.layers.LeakyReLU())
-    model.add(keras.layers.Conv2DTranspose(1, (5, 5), strides=(1, 1), padding='same', use_bias=False, activation='tanh'))
+    model.add(keras.layers.Conv2DTranspose(3, (5, 5), strides=(1, 1), padding='same', use_bias=False, activation='tanh'))
     return model 
 
 # Definicja modelu dyskryminatora
 def make_discriminator_model():
     model = keras.Sequential()
-    model.add(keras.layers.Conv2D(64, (5, 5), strides=(2, 2), padding='same', input_shape=[32, 32, 1]))
+    model.add(keras.layers.Conv2D(64, (5, 5), strides=(2, 2), padding='same', input_shape=[32, 32, 3]))
     model.add(keras.layers.LeakyReLU())
     model.add(keras.layers.Dropout(0.3))
     model.add(keras.layers.Conv2D(128, (5, 5), strides=(2, 2), padding='same'))
@@ -115,7 +115,7 @@ def generate_and_display_images(model, test_input):
     
     for i in range(predictions.shape[0]):
         plt.subplot(4, 4, i + 1)
-        plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
+        plt.imshow((predictions[i, :, :, 0] * 127.5 + 127.5).astype(np.uint8))
         plt.axis('off')
     
     plt.show()
