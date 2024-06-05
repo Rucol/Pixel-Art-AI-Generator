@@ -16,7 +16,7 @@ def generate_and_display_images(model, test_input):
     plt.show()
 
 # Ścieżka do zapisanego modelu
-model_save_path = r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model\Model.keras'
+model_save_path = r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model\ModelPixelArt.keras'
 
 # Ładowanie zapisanego modelu generatora
 generator = keras.models.load_model(model_save_path)
