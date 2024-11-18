@@ -7,27 +7,48 @@ import time
 from pathlib import Path
 from glob import glob
 
-BUFFER_SIZE = 60000
+
+ # Jeśli liczba obrazów jest mniejsza niż 60000
+
 BATCH_SIZE = 128
+
+BUFFER_SIZE = 100000
 # Ścieżka do folderów z obrazami
-data_dir = Path(r'C:\Users\Xentri\OneDrive\Pulpit\Assety\Sprites\frames')
+
+
+data_dir = Path(r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Assety\Sprites\frames')
 
 # Ładowanie obrazów z podfolderów
-image_paths = list(data_dir.glob('*/**/*.png'))
+image_paths = [p for p in data_dir.glob('*/**/*.png') if p.suffix.lower() == '.png']
+print(f"Znalezione obrazy: {len(image_paths)}")
+print("Przykładowe ścieżki do obrazów:", image_paths[:5]) 
+
+
+
+
 
 def load_and_preprocess_image(path):
-    image = tf.io.read_file(path)
-    image = tf.image.decode_png(image, channels=3)  # ładujemy jako obrazek grayscale
-    image = tf.image.resize(image, [32, 32])  # zmieniamy rozmiar na 32x32
-    image = (tf.cast(image, tf.float32) - 127.5) / 127.5  # normalizujemy wartości pikseli do przedziału [-1, 1]
-    return image
+    path = tf.strings.as_string(path)  # konwersja do string, jeśli to konieczne
+    try:
+        image = tf.io.read_file(path)
+        image = tf.image.decode_png(image, channels=3)  # ładowanie obrazu w RGB
+        image = tf.image.resize(image, [32, 32])  # zmiana rozmiaru na 32x32
+        image = (tf.cast(image, tf.float32) - 127.5) / 127.5  # normalizacja pikseli do [-1, 1]
+        return image
+    except tf.errors.InvalidArgumentError as e:
+        print(f"Nie udało się wczytać obrazu {path}. Błąd: {e}")
+        return None
+
+
+
 
 # Tworzenie datasetu
+# Tworzenie datasetu - konwersja ścieżek na ciągi znaków
 paths_ds = tf.data.Dataset.from_tensor_slices([str(p) for p in image_paths])
+
 image_ds = paths_ds.map(load_and_preprocess_image, num_parallel_calls=tf.data.experimental.AUTOTUNE)
 train_dataset = image_ds.shuffle(len(image_paths)).batch(BATCH_SIZE).prefetch(tf.data.experimental.AUTOTUNE)
 
-# Reszta kodu pozostaje bez zmian
 # Definicja modelu generatora
 def make_generator_model(): 
     model = keras.Sequential()
