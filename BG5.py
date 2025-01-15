@@ -10,7 +10,7 @@ BUFFER_SIZE = 8000
 BATCH_SIZE = 32
 EPOCHS = 500
 
-data_dir = Path(r'./asety2')
+data_dir = Path(r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Assety\Background')
 image_paths = list(data_dir.glob('*.png'))
 
 if len(image_paths) == 0:
