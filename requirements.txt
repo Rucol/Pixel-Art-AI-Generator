@@ -1,1 +1,7 @@
-
+os
+tensorflow
+numpy
+matplotlib
+gradio
+time
+pathlib
