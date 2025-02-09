@@ -5,8 +5,8 @@ import os
 from pathlib import Path
 
 # Ścieżki do modeli
-BG5_PATH = r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model\MB5.keras'
-PIXEL_ART_PATH = r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Model\ModelPixelArt.keras'
+BG5_PATH = r'C:\Users\Xentri\PixelArtGenerator\Model\MB5.keras'
+PIXEL_ART_PATH = r'C:\Users\Xentri\PixelArtGenerator\Model\ModelPixelArt.keras'
 
 # Ładowanie modeli
 bg_generator = tf.keras.models.load_model(BG5_PATH)
