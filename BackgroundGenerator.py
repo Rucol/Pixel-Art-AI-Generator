@@ -13,7 +13,7 @@ EPOCHS = 500      # Zwiększenie liczby epok
 
 
 # Ścieżka do folderów z obrazami
-data_dir = Path(r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Assety\Background')
+data_dir = Path(r'C:\Users\Xentri\Assets\Background')
 
 # Ładowanie obrazów z głównego folderu
 image_paths = list(data_dir.glob('*.png'))
@@ -207,7 +207,7 @@ def train(dataset, epochs):
     print(f"Training took {total_time:.2f} seconds")  # Wyświetlenie całkowitego czasu trenowania
     
     # Zapisywanie modelu generatora po zakończeniu trenowania
-    model_save_path = "C:\\Users\\Xentri\\OneDrive\\Pulpit\\Praca inżynierska\\Model\\ModelBackground.keras"
+    model_save_path = "C:\\Users\\Xentri\\PixelArtGenerator\\Model\\ModelBackground.keras"
     generator.save(model_save_path)
     print(f"Model generatora zapisany jako {model_save_path}")
     
