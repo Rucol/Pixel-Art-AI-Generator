@@ -10,7 +10,7 @@ BATCH_SIZE = 128
 BUFFER_SIZE = 100000
 
 # Ścieżka do folderów z obrazami
-data_dir = Path(r'C:\Users\Xentri\OneDrive\Pulpit\Praca inżynierska\Assety\Sprites\frames')
+data_dir = Path(r'C:\Users\Xentri\PixelArtGenerator\Assets\Sprites\frames')
 
 # Ładowanie obrazów z podfolderów
 image_paths = [p for p in data_dir.glob('*/**/*.png') if p.suffix.lower() == '.png']
