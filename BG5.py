@@ -10,7 +10,7 @@ BUFFER_SIZE = 8000
 BATCH_SIZE = 32
 EPOCHS = 500
 
-data_dir = Path(r'C:\Users\Xentri\Assets\Background')
+data_dir = Path(r'C:\Users\Xentri\PixelArtGenerator\Assets\Background')
 image_paths = list(data_dir.glob('*.png'))
 
 if len(image_paths) == 0:
