@@ -77,7 +77,7 @@ The application utilizes **Generative Adversarial Networks (GANs)**, consisting 
 3. **Run the application:**
 
    ```bash
-   python app.py
+   python Interface.py
    ```
 
    The user interface should be accessible in the browser at `http://localhost:7860`.
