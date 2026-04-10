@@ -69,10 +69,16 @@ The application utilizes **Generative Adversarial Networks (GANs)**, consisting 
    ```
 2. **Set up a Virtual Environment (Recommended):**
    Creating a virtual environment ensures that the project's dependencies are isolated from your global Python installation, preventing version conflicts.
-   On Windows:
+   
+   **On Windows:**
    ```bash
    python -m venv venv
    .\venv\Scripts\activate
+   ```
+   **On macOS/Linux:**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
    ```
 
 2. **Install required dependencies:**
