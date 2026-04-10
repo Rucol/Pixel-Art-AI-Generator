@@ -6,7 +6,7 @@
 
 ## 🎯 Project Goal
 
-The goal of the project was to develop AI models capable of generating high-quality pixel art graphics. The scope of work included:
+The goal of the project was to develop AI models capable of generating high-quality **random** pixel art graphics. The scope of work included:
 
 - Analysis and testing of existing solutions,
 - Selection of appropriate technologies and tools,
