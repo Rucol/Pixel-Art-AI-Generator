@@ -18,7 +18,7 @@ The goal of the project was to develop AI models capable of generating high-qual
 
 ### **Programming Language:**
 
-- **Python** – chosen for its extensive libraries and ease of implementation in ML models.
+- **Python version 12 or below** – chosen for its extensive libraries and ease of implementation in ML models.
 
 ### **Libraries and Frameworks:**
 
