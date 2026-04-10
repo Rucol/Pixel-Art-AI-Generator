@@ -67,13 +67,13 @@ The application utilizes **Generative Adversarial Networks (GANs)**, consisting 
    git clone https://github.com/Rucol/Pixel-Art-AI-Generator.git
    cd Pixel-Art-AI-Generator
    ```
-2. **Set up a Virtual Environment (Recommended) **
+2. **Set up a Virtual Environment (Recommended):**
    Creating a virtual environment ensures that the project's dependencies are isolated from your global Python installation, preventing version conflicts.
    On Windows:
-   '''bash
+   ```bash
    python -m venv venv
    .\venv\Scripts\activate
-   '''
+   ```
 
 2. **Install required dependencies:**
 
